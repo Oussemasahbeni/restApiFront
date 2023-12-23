@@ -77,7 +77,7 @@
 //   }
 
 // #host binding
-// host binding is a decorator that allows us to bind to properties of the element the directive is placed 
+// host binding is a decorator that allows us to bind to properties of the element the directive is placed
 // like this @HostBinding('style.backgroundColor') or @HostBinding('class.open')
 // style or class are properties of the element the directive is placed on and backgroundColor or open are values of the properties
 // @HostBinding('style.backgroundColor') backgroundColor: string = "transparent";
@@ -87,7 +87,7 @@
 
 
 
-// ? communication between components 
+// ? communication between components
 
 
 // ! @Input() and @Output()
@@ -228,13 +228,13 @@
 // this is because each component has its own instance of the service
 
 // !@Injectable() decorator is used to tell angular that this class can be injected into other classes
-// means this class can be used as a service 
-// we added to the service that is the receiving service , not the service that is being 
+// means this class can be used as a service
+// we added to the service that is the receiving service , not the service that is being
 // its not necessary to add it to the service that is being injected but its a good practice to do so
 
 
 // ?Routing and Navigation in Angular
-// we first need to either create an array of routes in the app.module.ts file or in the routes file 
+// we first need to either create an array of routes in the app.module.ts file or in the routes file
 // const appRoutes: Routes = [
 //     { path: '', component: HomeComponent },
 //     { path: 'users', component: UsersComponent },
@@ -268,7 +268,7 @@
 // we can also navigate programmatically
 // we need to inject the router service in the constructor first
 // example: constructor(private router: Router) { }
-// navigate takes an array of paths as an argument 
+// navigate takes an array of paths as an argument
 // the navigate link doesnt know on which route we are currently on
 // so we need to tell it on which route we are currently on , by default its the root domain
 // !example: this.router.navigate(['/servers'])
@@ -287,7 +287,7 @@
 // # Fetching Route Parameters
 
 // its usually better to convert the route parameter to a number by adding a plus sign before it
-const id = +this.route.snapshot.params['id']
+// const id = +this.route.snapshot.params['id']
 
 // we need to inject the ActivatedRoute service in the constructor first
 // constructor(private route: ActivatedRoute) { }
@@ -385,8 +385,8 @@ const id = +this.route.snapshot.params['id']
 // means if the guard returns true then the route will be activated
 
 // if we want to protect child routes we need to use canActivateChild instead of canActivate
-// same logic as canActivate, the only difference is that canActivateChild is used to protect child routes 
-// and we inject canActivateChild instead of canActivate 
+// same logic as canActivate, the only difference is that canActivateChild is used to protect child routes
+// and we inject canActivateChild instead of canActivate
 
 // # canDeactivate
 // canDeactivate is used to prevent a user from leaving a route if he has unsaved changes
@@ -439,7 +439,7 @@ const id = +this.route.snapshot.params['id']
 // !this.server = data['server']
 
 // # Location Strategies
-// there are two location strategies: hash and path 
+// there are two location strategies: hash and path
 // path is the default strategy and it uses the path sign to navigate to a route
 // to use it we need to add the useHash property to the forRoot method
 // export const AppRoutingRoutes = RouterModule.forRoot(routes, { useHash: true });
@@ -450,7 +450,7 @@ const id = +this.route.snapshot.params['id']
 
 // #Observables
 // observables are used to handle asynchronous tasks like http requests and events
-// observable are basically a stream of data that we can subscribe to 
+// observable are basically a stream of data that we can subscribe to
 // ! using observables is better than using promises because we can cancel the subscription
 // we subscribe to an observable to get the data using the subscribe method
 
@@ -477,7 +477,7 @@ const id = +this.route.snapshot.params['id']
 // the main reason why we need angular helps because we are building a spa application means we cant send requests to the server directly
 // angular offers two types of forms, template driven forms and reactive forms
 // template driven forms are used to build simple forms with less code
-// reactive forms are used to build complex forms with more code but more control   
+// reactive forms are used to build complex forms with more code but more control
 
 // #Template Driven Forms
 // template driven forms are used to build simple forms with less code
@@ -512,20 +512,20 @@ const id = +this.route.snapshot.params['id']
 // setValue is used to set all values
 // !@ViewChild('f') signupForm: NgForm;
 
-const suggestedName = 'Superuser';
-this.signupForm.setValue({
-    username: suggestedName,
-    email: '',
-    gender: 'male',
-    secret: 'pet',
-    questionAnswer: '',
-})
-// patchValue is used to set some values
+// const suggestedName = 'Superuser';
+// this.signupForm.setValue({
+//     username: suggestedName,
+//     email: '',
+//     gender: 'male',
+//     secret: 'pet',
+//     questionAnswer: '',
+// })
+// // patchValue is used to set some values
 
-this.signupForm.form.patchValue({
-    username: 'Superuser'
+// this.signupForm.form.patchValue({
+//     username: 'Superuser'
 
-})
+// })
 
 
 // using form data
@@ -535,7 +535,7 @@ this.signupForm.form.patchValue({
 // reseting the form
 // we can reset the form using the reset method
 // this.Form.reset()
-this.signupForm.reset()
+// !this.signupForm.reset()
 
 
 // #Reactive Forms

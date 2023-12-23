@@ -27,7 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/preline/preline.js"]
           },
           "configurations": {
             "production": {
@@ -91,5 +91,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6d532eff-015f-4b9b-9ff0-5afbb5979e73"
   }
 }
