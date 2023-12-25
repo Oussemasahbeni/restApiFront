@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../model/user';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, filter, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class UserService {
   private url = "http://Localhost:8080/"
   private currentUserSubject = new BehaviorSubject<string>(JSON.parse(localStorage.getItem('user') || 'null'));
-  currentUser = this.currentUserSubject.asObservable();
+  currentUser = this.currentUserSubject.asObservable().pipe(filter(user => user !== null && user !== 'null'));
 
   constructor(private http: HttpClient, private router: Router) {
     const user = JSON.parse(localStorage.getItem('user') || 'null');
