@@ -31,23 +31,26 @@
         class="flex flex-col gap-y-4 gap-x-0 mt-5 md:flex-row md:items-center md:justify-end md:gap-y-0 md:gap-x-7 md:mt-0 md:ps-7"
       >
         <a
-          class="font-medium text-blue-600 md:py-6 dark:text-blue-500"
+          class="font-medium text-gray-500"
           routerLink="/home"
+          routerLinkActive="text-blue-600 md:py-6 dark:text-blue-500"
           aria-current="page"
           >Landing</a
         >
         <a
-          class="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+          class="font-medium text-gray-500"
           routerLink="/products"
+          routerLinkActive="text-blue-600 md:py-6 dark:text-blue-500"
           >Products</a
         >
         <a
-          class="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+          class="font-medium text-gray-500"
           routerLink="/categories"
+          routerLinkActive="text-blue-600 md:py-6 dark:text-blue-500"
           >Categories</a
         >
 
-        <a
+        @if(!user){<a
           class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-s md:border-gray-300 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500 cursor-pointer"
           routerLink="/register"
         >
@@ -59,8 +62,47 @@
           routerLink="/login"
         >
           <i class="pi pi-user"></i>
-          Log in
-        </a>
+          Log in </a
+        >} @else if ( user ) {
+
+        <div class="card flex justify-content-center hs-dropdown">
+          <Button
+            class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-s md:border-gray-300 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500 cursor-pointer"
+          >
+            <i class="pi pi-user"></i>
+            {{ user }}
+          </Button>
+
+          <div
+            class="hs-dropdown-menu hidden transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 min-w-[15rem] bg-white shadow-md rounded-lg p-2 mt-2 divide-y divide-gray-200 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700"
+            aria-labelledby="hs-dropdown-with-dividers"
+          >
+            <div class="py-2 first:pt-0 last:pb-0">
+              <a
+                class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+                href="#"
+              >
+                Upgrade License
+              </a>
+            </div>
+            <div class="py-2 first:pt-0 last:pb-0">
+              <a
+                class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+                href="#"
+              >
+                Account Settings
+              </a>
+              <Button
+                class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-100 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-red-500 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+                (click)="logout()"
+              >
+                <i class="pi pi-sign-out"></i>
+                Sign out
+              </Button>
+            </div>
+          </div>
+        </div>
+        }
       </div>
     </div>
   </nav>

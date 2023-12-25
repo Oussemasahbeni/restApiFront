@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PasswordModule } from 'primeng/password';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
+import { UserService } from '../service/user/User.service';
+import { HotToastService } from '@ngneat/hot-toast';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-signup',
@@ -15,11 +16,10 @@ import { RouterModule } from '@angular/router';
 
 })
 export class SignupComponent {
-
-
   signupForm: FormGroup = new FormGroup({});
+  private toastService = inject(HotToastService);
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -30,11 +30,15 @@ export class SignupComponent {
       confirmedPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-
-
-
   onSubmit() {
-    console.log(this.signupForm.value);
+    this.userService.signup(this.signupForm.value).subscribe({
+      next: (response: User) => {
+        this.toastService.success('Signup Successful')
+        this.router.navigate(['/products'])
+      },
+      error: (err) => {
+        this.toastService.error(err.error.message)
+      }
+    })
   }
-
 }
