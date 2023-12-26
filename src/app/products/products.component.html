@@ -24,10 +24,21 @@
         <!-- End Title -->
 
         <!-- Grid -->
+        @if (products.length===0) {
+        <div class="flex justify-center">
+          <p
+            class="mt-2 lg:text-lg text-gray-800 dark:text-gray-200 text-center"
+          >
+            No products found...
+          </p>
+        </div>
+
+        }
         <div
           class="mt-6 md:mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-3 xl:gap-6 lg:items-center"
         >
           <!-- Card -->
+
           @for (item of products; track $index) {
           <div
             class="flex flex-col bg-white border border-gray-200 text-center rounded-2xl p-4 md:p-8 dark:bg-slate-900 dark:border-gray-700"

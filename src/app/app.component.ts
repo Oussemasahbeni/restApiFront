@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 
 @Component({
@@ -14,8 +14,17 @@ export class AppComponent {
   title = 'restApiFront';
 
   date: Number = new Date().getFullYear();
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        setTimeout(() => {
+          // @ts-ignore
+          HSStaticMethods.autoInit();
+        }, 100);
+      }
+    });
   }
+
 }

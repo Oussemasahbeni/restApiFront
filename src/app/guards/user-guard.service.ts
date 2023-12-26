@@ -10,7 +10,7 @@ import { UserService } from '../service/user/User.service';
 export class UserGuardService {
 
   constructor(private router: Router, private userService: UserService) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const isAuthenticated = this.userService.isAuthenticated();
     if (!isAuthenticated) {
       this.router.navigate(['/login']);
@@ -20,6 +20,6 @@ export class UserGuardService {
   }
 }
 
-export const userGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean => {
+export const userGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   return inject(UserGuardService).canActivate(next, state);
 }

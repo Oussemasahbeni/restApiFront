@@ -10,6 +10,8 @@ export class StoreService {
   private url = "http://Localhost:8080/"
   constructor(private http: HttpClient) { }
 
+  categories: Category[] = []
+
   getProducts() {
     return this.http.get<Product[]>(`${this.url}products`);
   }
@@ -37,6 +39,10 @@ export class StoreService {
 
   addCategory(category: Category) {
     return this.http.post<Category>(`${this.url}addCategory`, category);
+  }
+
+  deleteCategory(id:number){
+    return this.http.delete(`${this.url}category/${id}`);
   }
 
 
