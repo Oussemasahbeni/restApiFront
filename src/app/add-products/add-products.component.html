@@ -16,7 +16,7 @@
         class="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-gray-700"
       >
         <h2 class="mb-8 text-xl font-semibold text-gray-800 dark:text-gray-200">
-          Add Product
+          @if (editMode) { Edit Product }@else { Add Product }
         </h2>
 
         <form [formGroup]="productForm" (ngSubmit)="onSubmit()">

@@ -10,13 +10,19 @@ import { Router } from '@angular/router';
 export class UserService {
   private url = "http://Localhost:8080/"
   private currentUserSubject = new BehaviorSubject<string>(JSON.parse(localStorage.getItem('user') || 'null'));
-  currentUser = this.currentUserSubject.asObservable().pipe(filter(user => user !== null && user !== 'null'));
+  // currentUser = this.currentUserSubject.asObservable().pipe(filter(user => user !== null && user !== 'null'));
+  currentUser = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
     const user = JSON.parse(localStorage.getItem('user') || 'null');
     if (user) {
       this.currentUserSubject.next(user);
     }
+  }
+
+  isAuthenticated() {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    return user !== null && user !== 'null';
   }
 
   signup(user: User) {
