@@ -20,6 +20,7 @@
     "@angular/router": "^17.0.0",
     "@ngneat/hot-toast": "^6.0.2",
     "@preline/dropdown": "^2.0.1",
+    "@preline/overlay": "^2.0.1",
     "preline": "^2.0.2",
     "primeicons": "^6.0.1",
     "primeng": "^17.2.0",

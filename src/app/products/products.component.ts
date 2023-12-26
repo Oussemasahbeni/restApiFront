@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../service/store/Store.service';
 import { Product } from '../model/Product';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
+  standalone: true,
+  imports: [CommonModule],
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
@@ -20,5 +23,9 @@ export class ProductsComponent implements OnInit {
         // console.log(this.products);
       }
     )
+  }
+
+  buy() {
+    console.log("buy")
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { RouterModule } from '@angular/router';
+import { UserService } from '../service/user/User.service';
 
 @Component({
   selector: 'app-homepage',
@@ -12,9 +13,16 @@ import { RouterModule } from '@angular/router';
 export class HomepageComponent {
 
   date: Number = new Date().getFullYear();
-  constructor() { }
+  user: string = '';
+
+  constructor(public userService: UserService) {
+
+  }
 
   ngOnInit(): void {
+    this.userService.currentUser.subscribe((name) => {
+      this.user = name;
+    });
   }
 
 }
