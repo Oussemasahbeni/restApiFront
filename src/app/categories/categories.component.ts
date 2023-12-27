@@ -19,7 +19,6 @@ export class CategoriesComponent implements OnInit {
 
   private toastService = inject(HotToastService);
 
-
   constructor(private storeService: StoreService) { }
 
 
@@ -28,7 +27,7 @@ export class CategoriesComponent implements OnInit {
     this.storeService.getCategories().subscribe(
       {
         next: (response: Category[]) => {
-          console.log(response)
+          // console.log(response)
           this.storeService.categories = response
           this.categories = this.storeService.categories
 
@@ -58,5 +57,12 @@ export class CategoriesComponent implements OnInit {
       }
     })
   }
+
+  onEdit(item: Category) {
+    console.log(item)
+    this.storeService.setCategory(item)
+
+  }
+
 
 }

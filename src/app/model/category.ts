@@ -10,3 +10,4 @@ export interface Category {
     status: Status;
     date_created: Date;
 }
+
