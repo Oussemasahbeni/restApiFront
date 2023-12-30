@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StoreService } from '../service/store/Store.service';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -15,7 +15,7 @@ export class AddCategoriesComponent implements OnInit {
   private toastService = inject(HotToastService);
 
 
-  constructor(private fb: FormBuilder, private StoreService: StoreService) { }
+  constructor(private fb: FormBuilder, private StoreService: StoreService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.categoryForm = this.fb.group({
@@ -34,6 +34,7 @@ export class AddCategoriesComponent implements OnInit {
         next: (response) => {
           this.StoreService.categories.push(response)
           this.toastService.success('Category added successfully')
+          this.cdr.detectChanges()
         },
         error: (err) => {
           console.log(err)

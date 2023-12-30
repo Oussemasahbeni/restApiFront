@@ -20,30 +20,31 @@ export class CategoriesComponent implements OnInit {
   private toastService = inject(HotToastService);
 
   constructor(private storeService: StoreService) { }
-
+  public idToDelete: number = 0
 
 
   ngOnInit(): void {
     this.storeService.getCategories().subscribe(
       {
         next: (response: Category[]) => {
-          // console.log(response)
+          console.log(response)
           this.storeService.categories = response
           this.categories = this.storeService.categories
-
+          console.log(this.categories)
         },
         error: (err) => {
           console.log(err)
         }
       }
-
     )
   }
 
   onDelete(id: number) {
+    console.log(id)
     this.storeService.deleteCategory(id).subscribe({
       next: (response) => {
         console.log(response)
+        console.log(id)
         this.storeService.categories = this.storeService.categories.filter(category => category.id_category != id)
         this.toastService.success('Category deleted successfully')
         this.categories = this.storeService.categories
@@ -53,15 +54,13 @@ export class CategoriesComponent implements OnInit {
 
           this.toastService.error('Cannot delete category with products')
         }
-        console.log(err)
+        // console.log(err)
       }
     })
   }
 
   onEdit(item: Category) {
-    console.log(item)
     this.storeService.setCategory(item)
-
   }
 
 
