@@ -31,14 +31,18 @@ export class SignupComponent {
     });
   }
   onSubmit() {
-    this.userService.signup(this.signupForm.value).subscribe({
-      next: (response: User) => {
-        this.toastService.success('Signup Successful')
-        this.router.navigate(['/products'])
-      },
-      error: (err) => {
-        this.toastService.error(err.error.message)
-      }
-    })
+    if (this.signupForm.value.password === this.signupForm.value.confirmedPassword) {
+      this.userService.signup(this.signupForm.value).subscribe({
+        next: (response: User) => {
+          this.toastService.success('Signup Successful')
+          this.router.navigate(['/products'])
+        },
+        error: (err) => {
+          this.toastService.error(err.error.message)
+        }
+      })
+    } else {
+      this.toastService.error('Passwords do not match')
+    }
   }
 }

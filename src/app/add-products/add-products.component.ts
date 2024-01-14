@@ -97,6 +97,16 @@ export class AddProductsComponent {
     })
   }
 
+  incrementQte() {
+    this.productForm.get('qte')?.setValue(this.productForm.get('qte')?.value + 1);
+  }
+
+  decrementQte() {
+    if (this.productForm.get('qte')?.value > 1) {
+      this.productForm.get('qte')?.setValue(this.productForm.get('qte')?.value - 1);
+    }
+  }
+
   onEdit(id: number) {
     this.editMode = true
     this.id = id;
@@ -116,6 +126,10 @@ export class AddProductsComponent {
         this.toastService.error(err.error.message)
       }
     })
+
+
   }
+
+
 
 }
